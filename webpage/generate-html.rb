@@ -7,14 +7,22 @@ plugins = Array.new
 
 Dir.glob('../plugin-*').each do |plugin_dir|
   name = plugin_dir.split('../plugin-').last
-  location = "./BIPlugin-#{name}.apk"
+  apklocation = "./apks/BIPlugin-#{name}.apk"
+  pnglocation = "./images/BIPlugin-#{name}-default050.png"
+  chglocation = "./images/BIPlugin-#{name}-charging050.png"
 
-  system "cp #{plugin_dir}/bin/*-release.apk #{location}"
+  system "cp #{plugin_dir}/bin/*-release.apk #{apklocation}"
+  system "cp #{plugin_dir}/res/drawable-hdpi/default050.png #{pnglocation}"
+  if not (system "cp #{plugin_dir}/res/drawable-hdpi/charging050.png #{chglocation}")
+    chglocation = nil
+  end
 
   plugin = Hash.new
 
   plugin[:name] = name
-  plugin[:location] = location
+  plugin[:apklocation] = apklocation
+  plugin[:pnglocation] = pnglocation
+  plugin[:chglocation] = chglocation
 
   plugins << plugin
 end
@@ -22,11 +30,21 @@ end
 page = PluginPage.new
 page.addln '<ul>'
 
+page.addln '<table><tr><th>Name</th><th>Normal Icon</th><th>Charging Icon</th><th>Link</th></tr>'
 plugins.each do |plugin|
-  page.addln "<li><a href=\"#{plugin[:location]}\">#{plugin[:name]}</a></li>"
+  page.add '<tr>'
+  page.add "<td>#{plugin[:name]}</td>"
+  page.add "<td style=\"background-color:black\"><img src=\"#{plugin[:pnglocation]}\"></td>"
+  if plugin[:chglocation].nil?
+    page.add "<td>(Same)</td>"
+  else
+    page.add "<td style=\"background-color:black\"><img src=\"#{plugin[:chglocation]}\"></td>"
+  end
+  page.add "<td><a href=\"#{plugin[:apklocation]}\">#{plugin[:apklocation].split('/').last}</a></td>"
+  page.addln "</tr>"
 end
 
-page.addln '</ul>'
+page.addln '</table>'
 
 File.open('plugins.html', 'w') do |f|
   f.puts(page.generate())
