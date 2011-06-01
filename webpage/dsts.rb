@@ -43,6 +43,10 @@ class AbstractPage
     @content << s
   end
 
+  def addln(s)
+    @content << s << "\n"
+  end
+
   def generate()
     @page = String.new
 

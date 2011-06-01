@@ -6,17 +6,27 @@ require './dsts-ext.rb'
 plugins = Array.new
 
 Dir.glob('../plugin-*').each do |plugin_dir|
-  plugins << plugin_dir.split('../plugin-').last
+  name = plugin_dir.split('../plugin-').last
+  location = "./BIPlugin-#{name}.apk"
+
+  system "cp #{plugin_dir}/bin/*-release.apk #{location}"
+
+  plugin = Hash.new
+
+  plugin[:name] = name
+  plugin[:location] = location
+
+  plugins << plugin
 end
 
 page = PluginPage.new
-page.add '<ul>'
+page.addln '<ul>'
 
 plugins.each do |plugin|
-  page.add '<li>' << plugin << '</li>'
+  page.addln "<li><a href=\"#{plugin[:location]}\">#{plugin[:name]}</a></li>"
 end
 
-page.add '</ul>'
+page.addln '</ul>'
 
 File.open('plugins.html', 'w') do |f|
   f.puts(page.generate())
