@@ -34,13 +34,13 @@ page.addln '<table><tr><th>Name</th><th colspan="2">Normal Icon</th><th colspan=
 plugins.each do |plugin|
   page.add '<tr>'
   page.add "<td>#{plugin[:name]}</td>"
-  page.add "<td style=\"background-color:black\"><img src=\"#{plugin[:pnglocation]}\"></td>"
-  page.add "<td style=\"background-image:url('./images/pre-gingerbread-bg.png')\"><img src=\"#{plugin[:pnglocation]}\"></td>"
+  page.add "<td style=\"text-align:center; background-color:black;\"><img src=\"#{plugin[:pnglocation]}\"></td>"
+  page.add "<td style=\"text-align:center; background-image:url('./images/pre-gingerbread-bg.png')\"><img src=\"#{plugin[:pnglocation]}\"></td>"
   if plugin[:chglocation].nil?
     page.add '<td colspan="2">(Same)</td>'
   else
-    page.add "<td style=\"background-color:black\"><img src=\"#{plugin[:chglocation]}\"></td>"
-    page.add "<td style=\"background-image:url('./images/pre-gingerbread-bg.png')\"><img src=\"#{plugin[:chglocation]}\"></td>"
+    page.add "<td style=\"text-align:center; background-color:black\"><img src=\"#{plugin[:chglocation]}\"></td>"
+    page.add "<td style=\"text-align:center; background-image:url('./images/pre-gingerbread-bg.png')\"><img src=\"#{plugin[:chglocation]}\"></td>"
   end
   #page.add "<td><a href=\"#{plugin[:apklocation]}\">#{plugin[:apklocation].split('/').last}</a></td>"
   page.add "<td><a href=\"#{plugin[:apklocation]}\">Install</a></td>"
