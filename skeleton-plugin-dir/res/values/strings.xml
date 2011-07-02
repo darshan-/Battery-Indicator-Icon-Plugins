@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string formatted="false" name="app_label">BI Plugin - Just White Number</string>
+  <string formatted="false" name="app_label">BI Plugin - PluginName</string>
 </resources>

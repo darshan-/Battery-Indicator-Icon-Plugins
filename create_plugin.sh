@@ -6,18 +6,26 @@ then
     exit
 fi
 
-cp -ar skeleton-plugin-dir plugin-$1
-rm -rf plugin-$1/.svn
-rm -rf plugin-$1/*/.svn
-rm -rf plugin-$1/*/*/.svn
-rm -rf plugin-$1/*/*/.svn
-rm -rf plugin-$1/*/*/*/.svn
-rm -rf plugin-$1/*/*/*/.svn
-rm -rf plugin-$1/*/*/*/*/.svn
-rm -rf plugin-$1/*/*/*/*/*/.svn
-rm -rf plugin-$1/*/*/*/*/*/*/.svn
-rm -rf plugin-$1/*/*/*/*/*/*/*/.svn
-rm -rf plugin-$1/*/*/*/*/*/*/*/*/.svn
+plugin_name=$1
+plugin_full_name=`ruby -e "puts '$plugin_name'.gsub(/([A-Z])/, ' \1').strip"`
+plugin_dir=plugin-$1
 
-# set name in AndroidManifest.xml and res/values/strings.xml
+cp -ar skeleton-plugin-dir $plugin_dir
+
+cd $plugin_dir
+
+rm -rf .svn
+rm -rf */.svn
+rm -rf */*/.svn
+rm -rf */*/*/.svn
+rm -rf */*/*/*/.svn
+rm -rf */*/*/*/*/.svn
+rm -rf */*/*/*/*/*/.svn
+rm -rf */*/*/*/*/*/*/.svn
+rm -rf */*/*/*/*/*/*/*/.svn
+
+sed -i -e s/PluginName/$plugin_name/ AndroidManifest.xml
+sed -i -e s/PluginName/$plugin_name/ src/com/darshancomputing/BatteryIndicatorPro/IconPlugin/PluginService.java
+sed -i -e "s/PluginName/$plugin_full_name/" res/values/strings.xml
+
 # add to svn, then set up svn:ignore props

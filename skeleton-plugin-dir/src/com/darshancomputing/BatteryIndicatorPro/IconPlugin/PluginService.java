@@ -12,7 +12,7 @@
     GNU General Public License for more details.
 */
 
-package com.darshancomputing.BatteryIndicatorPro.IconPluginV1.JustWhiteNumber;
+package com.darshancomputing.BatteryIndicatorPro.IconPluginV1.PluginName;
 
 import android.app.Notification;
 import android.app.NotificationManager;
