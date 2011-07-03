@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 
 #require 'nokogiri'
@@ -28,6 +29,7 @@ Dir.glob('../plugin-*').each do |plugin_dir|
 end
 
 page = PluginPage.new
+page.title = 'Battery Indicator Pro Icon Plugins'
 page.addln '<ul>'
 
 page.addln '<table><tr><th>Name</th><th colspan="2">Normal Icon</th><th colspan="2">Charging Icon</th><th>Link</th></tr>'
