@@ -25,8 +25,10 @@ for i in ../res/drawable-hdpi/charging[0-9]*.png; do composite bolt-hdpi-001.png
 
 cd $d/numbers-mdpi
 for i in [0-9]*.png; do cp $i ../../res/drawable/default$i; done
-for i in [0-9]*.png; do cp $i ../../res/drawable/charging$i; done
 
 cd $d
 for i in ../res/drawable/default[0-9]*.png; do composite $i black-bg-mdpi-001.png $i; done
+cd $d/numbers-mdpi
+for i in [0-9]*.png; do cp ../../res/drawable/default$i ../../res/drawable/charging$i; done
+cd $d
 for i in ../res/drawable/charging[0-9]*.png; do composite bolt-mdpi-001.png $i $i; done
