@@ -28,4 +28,16 @@ sed -i -e s/PluginName/$plugin_name/ AndroidManifest.xml
 sed -i -e s/PluginName/$plugin_name/ src/com/darshancomputing/BatteryIndicatorPro/IconPlugin/PluginService.java
 sed -i -e "s/PluginName/$plugin_full_name/" res/values/strings.xml
 
-# add to svn, then set up svn:ignore props
+cd ..
+svn add $plugin_dir
+cd $plugin_dir
+
+svn propset svn:ignore "bin
+gen
+libs" .
+
+svn propset svn:ignore "numbers-hdpi
+numbers-mdpi" image-playground
+
+svn propset svn:ignore "drawable-hdpi
+drawable" res
