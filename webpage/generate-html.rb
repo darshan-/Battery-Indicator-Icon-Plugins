@@ -39,7 +39,7 @@ plugins.each do |plugin|
   page.add "<td style=\"text-align:center; background-color:black;\"><img src=\"#{plugin[:pnglocation]}\"></td>"
   page.add "<td style=\"text-align:center; background-image:url('./images/pre-gingerbread-bg.png')\"><img src=\"#{plugin[:pnglocation]}\"></td>"
   if plugin[:chglocation].nil?
-    page.add '<td colspan="2">(Same)</td>'
+    page.add '<td colspan="2">(No change)</td>'
   else
     page.add "<td style=\"text-align:center; background-color:black\"><img src=\"#{plugin[:chglocation]}\"></td>"
     page.add "<td style=\"text-align:center; background-image:url('./images/pre-gingerbread-bg.png')\"><img src=\"#{plugin[:chglocation]}\"></td>"
