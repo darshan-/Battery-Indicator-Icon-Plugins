@@ -81,8 +81,8 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
     private static final int DIALOG_CONFIRM_TEN_PERCENT_ENABLE  = 0;
     private static final int DIALOG_CONFIRM_TEN_PERCENT_DISABLE = 1;
 
-    private Intent biServiceIntent;
-    //private BIServiceConnection biServiceConnection;
+    private Intent pluginServiceIntent;
+    private PluginServiceConnection pluginServiceConnection;
 
     private Resources res;
     private PreferenceScreen mPreferenceScreen;
@@ -201,9 +201,9 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         for (int i=0; i < LIST_PREFS.length; i++)
             updateListPrefSummary(LIST_PREFS[i]);
 
-        //biServiceIntent = new Intent(this, BatteryIndicatorService.class);
-        //biServiceConnection = new BIServiceConnection();
-        //bindService(biServiceIntent, biServiceConnection, 0);
+        pluginServiceIntent = new Intent(this, PluginService.class);
+        pluginServiceConnection = new PluginServiceConnection();
+        bindService(pluginServiceIntent, pluginServiceConnection, 0);
     }
 
     private void setPrefScreen(int resource) {
@@ -220,12 +220,11 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         finish();
     }
 
-    // TODO: Can the plugin (easily) restart teh service?
     private void resetService() {
         try {
-            //biServiceConnection.biService.reloadSettings();
+            pluginServiceConnection.pluginService.reNotify();
         } catch (Exception e) {
-            //startService(new Intent(this, BatteryIndicatorService.class));
+            startService(new Intent(this, PluginService.class));
         }
     }
 
@@ -233,7 +232,7 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
     protected void onDestroy() {
         super.onDestroy();
 
-        //unbindService(biServiceConnection);
+        unbindService(pluginServiceConnection);
     }
 
     @Override

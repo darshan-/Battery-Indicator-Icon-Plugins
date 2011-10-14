@@ -10,7 +10,7 @@
       android:key="category_color"
       android:title="@string/pref_cat_color"
   >
-    <com.darshancomputing.BatteryIndicatorPro.ColorPreviewPreference
+    <com.darshancomputing.BatteryIndicatorPro.IconPluginV1.Classic.ColorPreviewPreference
        android:key="color_preview"
        android:title="@string/pref_color_preview"
        android:layout="@layout/color_preview_pref"

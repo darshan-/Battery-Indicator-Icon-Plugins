@@ -39,6 +39,12 @@ public class PluginService extends Service {
 
     private static final int blackIcon0 = R.drawable.b000;
 
+    private int last_percent;
+    private int last_status;
+    private String last_title;
+    private String last_text;
+    private PendingIntent last_intent;
+
     private boolean bound;
 
     private final Handler mHandler = new Handler();
@@ -89,7 +95,7 @@ public class PluginService extends Service {
     }
 
     public class LocalBinder extends Binder {
-        public Service getService() {
+        public PluginService getService() {
             return PluginService.this;
         }
     }
@@ -97,6 +103,12 @@ public class PluginService extends Service {
     private final IBinder mBinder = new LocalBinder();
 
     public void notify(int percent, int status, String title, String text, PendingIntent intent) {
+        last_percent = percent;
+        last_status  = status;
+        last_title   = title;
+        last_text    = text;
+        last_intent  = intent;
+
         int icon = blackIcon0 + percent;
 
         Notification notification = new Notification(icon, null, System.currentTimeMillis());
@@ -107,11 +119,15 @@ public class PluginService extends Service {
         mNotificationManager.notify(NOTIFICATION_PRIMARY, notification);
     }
 
+    public void reNotify() {
+        notify(last_percent, last_status, last_title, last_text, last_intent);
+    }
+
     public Boolean hasSettings() {
         return true;
     }
 
     public void configure() {
-        // Launch settings
+        startActivity(new Intent(this, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 }
