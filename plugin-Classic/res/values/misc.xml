@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Resources that are neither styles nor strings to be translated. -->
+<resources>
+  <bool   name="default_use_red">true</bool>
+  <string name="default_red_thresh">15</string>
+  <string name="default_red_thresh10">16</string>
+  <bool   name="default_use_amber">true</bool>
+  <string name="default_amber_thresh">40</string>
+  <string name="default_amber_thresh10">41</string>
+  <bool   name="default_use_green">true</bool>
+  <string name="default_green_thresh">@string/default_amber_thresh</string>
+  <string name="default_green_thresh10">50</string>
+
+  <string name="settings_help_activity_name">@string/settings_activity_name</string>
+</resources>

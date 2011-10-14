@@ -11,6 +11,20 @@
       android:process="com.darshancomputing.BatteryIndicatorPro"
   >
     <service android:name=".PluginService" />
+
+    <activity
+        android:name=".SettingsActivity"
+        android:label="@string/settings_activity_name"
+        android:excludeFromRecents="true"
+    />
+
+    <activity
+        android:name=".SettingsHelpActivity"
+        android:label="@string/settings_help_activity_name"
+        android:theme="@style/bi_help_theme"
+        android:stateNotNeeded="true"
+        android:excludeFromRecents="true"
+    />
   </application>
 
   <uses-sdk
