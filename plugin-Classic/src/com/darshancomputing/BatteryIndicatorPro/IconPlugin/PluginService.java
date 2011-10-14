@@ -37,8 +37,7 @@ public class PluginService extends Service {
     private static final int STATUS_NOT_CHARGING  = 4;
     private static final int STATUS_FULLY_CHARGED = 5;
 
-    private static final int defaultIcon0 = R.drawable.default000;
-    private int chargingIcon0;
+    private static final int blackIcon0 = R.drawable.b000;
 
     private boolean bound;
 
@@ -64,13 +63,6 @@ public class PluginService extends Service {
     public void onCreate() {
         context = getApplicationContext();
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        try {
-            java.lang.reflect.Field f = R.drawable.class.getField("charging000");
-            chargingIcon0 = f.getInt(R.drawable.class);
-        } catch (Exception e) {
-            chargingIcon0 = defaultIcon0;
-        }
 
         /* If the user reinstalls the main package, Android restarts this service.  If we don't check for this,
              we'd end up with a stale notification without a real BI behind it.  So we should either check for this
@@ -105,12 +97,7 @@ public class PluginService extends Service {
     private final IBinder mBinder = new LocalBinder();
 
     public void notify(int percent, int status, String title, String text, PendingIntent intent) {
-        int icon;
-
-        if (status == STATUS_CHARGING)
-            icon = chargingIcon0 + percent;
-        else
-            icon = defaultIcon0 + percent;
+        int icon = blackIcon0 + percent;
 
         Notification notification = new Notification(icon, null, System.currentTimeMillis());
 
@@ -118,5 +105,13 @@ public class PluginService extends Service {
         notification.setLatestEventInfo(context, title, text, intent);
 
         mNotificationManager.notify(NOTIFICATION_PRIMARY, notification);
+    }
+
+    public Boolean hasSettings() {
+        return true;
+    }
+
+    public void configure() {
+        // Launch settings
     }
 }

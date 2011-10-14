@@ -119,4 +119,8 @@ public class PluginService extends Service {
 
         mNotificationManager.notify(NOTIFICATION_PRIMARY, notification);
     }
+
+    public Boolean hasSettings() {
+        return false;
+    }
 }
