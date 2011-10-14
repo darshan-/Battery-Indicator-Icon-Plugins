@@ -20,9 +20,12 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 
 public class PluginService extends Service {
     private NotificationManager mNotificationManager;
@@ -37,7 +40,8 @@ public class PluginService extends Service {
     private static final int STATUS_NOT_CHARGING  = 4;
     private static final int STATUS_FULLY_CHARGED = 5;
 
-    private static final int blackIcon0 = R.drawable.b000;
+    private Resources res;
+    private SharedPreferences settings;
 
     private int last_percent;
     private int last_status;
@@ -69,6 +73,8 @@ public class PluginService extends Service {
     public void onCreate() {
         context = getApplicationContext();
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        settings = PreferenceManager.getDefaultSharedPreferences(context);
+        res = getResources();
 
         /* If the user reinstalls the main package, Android restarts this service.  If we don't check for this,
              we'd end up with a stale notification without a real BI behind it.  So we should either check for this
@@ -109,7 +115,23 @@ public class PluginService extends Service {
         last_text    = text;
         last_intent  = intent;
 
-        int icon = blackIcon0 + percent;
+        int icon;
+        if (settings.getBoolean(SettingsActivity.KEY_RED, res.getBoolean(R.bool.default_use_red)) &&
+            percent < Integer.valueOf(settings.getString(SettingsActivity.KEY_RED_THRESH, res.getString(R.string.default_red_thresh))) &&
+            percent <= SettingsActivity.RED_ICON_MAX) {
+            icon = R.drawable.r000 + percent - 0;
+        } else if (settings.getBoolean(SettingsActivity.KEY_AMBER, res.getBoolean(R.bool.default_use_amber)) &&
+                   percent < Integer.valueOf(settings.getString(SettingsActivity.KEY_AMBER_THRESH, res.getString(R.string.default_amber_thresh))) &&
+                   percent <= SettingsActivity.AMBER_ICON_MAX &&
+                   percent >= SettingsActivity.AMBER_ICON_MIN){
+            icon = R.drawable.a000 + percent - 0;
+        } else if (settings.getBoolean(SettingsActivity.KEY_GREEN, res.getBoolean(R.bool.default_use_green)) &&
+                   percent >= Integer.valueOf(settings.getString(SettingsActivity.KEY_GREEN_THRESH, res.getString(R.string.default_green_thresh))) &&
+                   percent >= SettingsActivity.GREEN_ICON_MIN) {
+            icon = R.drawable.g020 + percent - 20;
+        } else {
+            icon = R.drawable.b000 + percent;
+        }
 
         Notification notification = new Notification(icon, null, System.currentTimeMillis());
 
