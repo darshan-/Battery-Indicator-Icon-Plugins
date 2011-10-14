@@ -66,15 +66,15 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
 
     /* Red must go down to 0 and green must go up to 100,
        which is why they aren't listed here. */
-    public static final int   RED_ICON_MAX = 30;
+    public static final int   RED_ICON_MAX = 50;
     public static final int AMBER_ICON_MIN =  0;
-    public static final int AMBER_ICON_MAX = 50;
+    public static final int AMBER_ICON_MAX = 80;
     public static final int GREEN_ICON_MIN = 20;
 
     public static final int   RED_SETTING_MIN =  5;
-    public static final int   RED_SETTING_MAX = 30;
+    public static final int   RED_SETTING_MAX = 50;
     public static final int AMBER_SETTING_MIN = 10;
-    public static final int AMBER_SETTING_MAX = 50;
+    public static final int AMBER_SETTING_MAX = 80;
     public static final int GREEN_SETTING_MIN = 20;
     /* public static final int GREEN_SETTING_MAX = 100; /* TODO: use this, and possibly set it to 95. */
 
