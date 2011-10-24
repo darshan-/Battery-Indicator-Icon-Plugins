@@ -6,3 +6,7 @@ numbers-hdpi/
 numbers-mdpi/
 drawable-hdpi/
 drawable/
+
+*.properties
+build.xml
+!build.properties
