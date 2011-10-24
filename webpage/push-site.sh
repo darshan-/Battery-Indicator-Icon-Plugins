@@ -8,4 +8,3 @@ scp plugins.html $loc/index.html
 scp plugins.css $loc/
 scp -r images $loc/
 scp -r icons $loc/
-scp -r apks $loc/apks/
