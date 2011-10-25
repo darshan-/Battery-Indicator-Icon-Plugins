@@ -4,6 +4,8 @@ class PluginPage < XhtmlPage
   def initialize()
     super()
     @style_sheets = ['plugins.css']
+    @head_misc << %Q{<meta name="HandheldFriendly" content="true" />\n}
+    @head_misc << %Q{<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />}
   end
 
   def open_body()

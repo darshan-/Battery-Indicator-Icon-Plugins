@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-html, body,
+html, body, span,
 img, table,
 tr, th, td,
 div, p, h1, h2,
@@ -12,5 +12,40 @@ h3, h4, h5
 }
 
 html {
-  background-color: #ddd;
+  background-color: #eee;
+  padding: 10px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+td.status_bar {
+  text-align:center;
+  width: 50px;
+  height: 39px;
+}
+
+td.pre_gingerbread {
+  background-image:url('./images/pre-gingerbread-bg.png');
+}
+
+td.black {
+  background-color: black;
+}
+
+div.status_bar {
+  text-align: center;
+  
+  display: inline-block;
+  width: 50px;
+  height: 38px;
+}
+
+div.pre_gingerbread {
+  background-image:url('./images/pre-gingerbread-bg.png');
+}
+
+div.black {
+  background-color: black;
 }
