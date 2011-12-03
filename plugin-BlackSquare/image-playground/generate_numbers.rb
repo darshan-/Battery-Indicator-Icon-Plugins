@@ -9,6 +9,12 @@ class NumberImageGenerator
     set_hdpi()
   end
 
+  def set_xhdpi()
+    @image_dir = 'numbers-xhdpi/'
+    @font_size = 30
+    @dimen = 48
+  end
+
   def set_hdpi()
     @image_dir = 'numbers-hdpi/'
     @font_size = 22
@@ -45,9 +51,16 @@ for i in 0..100
   ig.generate(i.to_s);
 end
 
+ig.set_xhdpi()
+for i in 0..100
+  ig.generate(i.to_s);
+end
+
 #system("gimp numbers-hdpi/100.png")
 #system("for i in numbers-hdpi/[0-9]*.png; do convert $i -roll +1+0 $i; done")
 system("for i in numbers-hdpi/[0-9]*.png; do convert $i -roll +0+2 $i; done")
 #system("for i in numbers-hdpi/[0-9]*.png; do composite $i plug001.png $i; done")
 system("cp numbers-hdpi/[0-9]*.png numbers-mdpi");
 system("for i in numbers-mdpi/[0-9]*.png; do mogrify -resize 25x25 -sharpen 25x25 $i; done")
+
+system("for i in numbers-xhdpi/[0-9]*.png; do convert $i -roll +0+3 $i; done")

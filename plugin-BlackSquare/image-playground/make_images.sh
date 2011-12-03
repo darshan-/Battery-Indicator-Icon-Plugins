@@ -13,6 +13,20 @@ mkdir -p ../res/drawable
 
 d=`dirname $(readlink -f $0)`
 
+
+
+cd $d/numbers-xhdpi
+for i in [0-9]*.png; do cp $i ../../res/drawable-xhdpi/default$i; done
+
+cd $d
+for i in ../res/drawable-xhdpi/default[0-9]*.png; do composite $i black-bg-xhdpi-001.png $i; done
+cd $d/numbers-xhdpi
+for i in [0-9]*.png; do cp ../../res/drawable-xhdpi/default$i ../../res/drawable-xhdpi/charging$i; done
+cd $d
+for i in ../res/drawable-xhdpi/charging[0-9]*.png; do composite bolt-xhdpi-001.png $i $i; done
+
+
+
 cd $d/numbers-hdpi
 for i in [0-9]*.png; do cp $i ../../res/drawable-hdpi/default$i; done
 
@@ -22,6 +36,8 @@ cd $d/numbers-hdpi
 for i in [0-9]*.png; do cp ../../res/drawable-hdpi/default$i ../../res/drawable-hdpi/charging$i; done
 cd $d
 for i in ../res/drawable-hdpi/charging[0-9]*.png; do composite bolt-hdpi-001.png $i $i; done
+
+
 
 cd $d/numbers-mdpi
 for i in [0-9]*.png; do cp $i ../../res/drawable/default$i; done
