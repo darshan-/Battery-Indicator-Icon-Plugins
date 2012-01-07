@@ -11,6 +11,12 @@ class NumberImageGenerator
 
   def set_xhdpi()
     @image_dir = 'numbers-xhdpi/'
+    @font_size = 34
+    @dimen = 48
+  end
+
+  def set_xhdpi_100()
+    @image_dir = 'numbers-xhdpi/'
     @font_size = 30
     @dimen = 48
   end
@@ -52,9 +58,12 @@ for i in 0..100
 end
 
 ig.set_xhdpi()
-for i in 0..100
+for i in 0..99
   ig.generate(i.to_s);
 end
+
+ig.set_xhdpi_100()
+ig.generate("100")
 
 #system("gimp numbers-hdpi/100.png")
 #system("for i in numbers-hdpi/[0-9]*.png; do convert $i -roll +1+0 $i; done")
