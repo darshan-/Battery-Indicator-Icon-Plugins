@@ -5,8 +5,7 @@ gen/
 numbers-xhdpi/
 numbers-hdpi/
 numbers-mdpi/
-drawable-xhdpi/
-drawable-hdpi/
+drawable-*/
 drawable/
 
 *.properties

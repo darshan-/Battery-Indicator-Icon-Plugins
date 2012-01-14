@@ -9,6 +9,7 @@
 # for i in numbers/*.png; do convert $i -roll +1+0 $i; done
 
 mkdir -p ../res/drawable-hdpi
+mkdir -p ../res/drawable-hdpi-v14
 mkdir -p ../res/drawable
 
 d=`dirname $(readlink -f $0)`
@@ -16,14 +17,14 @@ d=`dirname $(readlink -f $0)`
 
 
 cd $d/numbers-xhdpi
-for i in [0-9]*.png; do cp $i ../../res/drawable-xhdpi/default$i; done
+for i in [0-9]*.png; do cp $i ../../res/drawable-hdpi-v14/default$i; done
 
 cd $d
-for i in ../res/drawable-xhdpi/default[0-9]*.png; do composite $i black-bg-xhdpi-001.png $i; done
+for i in ../res/drawable-hdpi-v14/default[0-9]*.png; do composite $i black-bg-xhdpi-001.png $i; done
 cd $d/numbers-xhdpi
-for i in [0-9]*.png; do cp ../../res/drawable-xhdpi/default$i ../../res/drawable-xhdpi/charging$i; done
+for i in [0-9]*.png; do cp ../../res/drawable-hdpi-v14/default$i ../../res/drawable-hdpi-v14/charging$i; done
 cd $d
-for i in ../res/drawable-xhdpi/charging[0-9]*.png; do composite bolt-xhdpi-001.png $i $i; done
+for i in ../res/drawable-hdpi-v14/charging[0-9]*.png; do composite bolt-xhdpi-001.png $i $i; done
 
 
 
