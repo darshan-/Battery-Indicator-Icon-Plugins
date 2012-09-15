@@ -11,7 +11,7 @@ class NumberImageGenerator
 
   def set_xhdpi()
     @image_dir = 'numbers-xhdpi/'
-    @font_size = 34
+    @font_size = 40
     @dimen = 48
   end
 
