@@ -23,11 +23,23 @@ class NumberImageGenerator
 
   def set_hdpi()
     @image_dir = 'numbers-hdpi/'
+    @font_size = 30
+    @dimen = 35
+  end
+
+  def set_hdpi_100()
+    @image_dir = 'numbers-hdpi/'
     @font_size = 22
     @dimen = 35
   end
 
   def set_mdpi()
+    @image_dir = 'numbers-mdpi/'
+    @font_size = 20
+    @dimen = 25
+  end
+
+  def set_mdpi_100()
     @image_dir = 'numbers-mdpi/'
     @font_size = 14
     @dimen = 25
@@ -53,9 +65,13 @@ system("mkdir -p numbers-hdpi")
 system("mkdir -p numbers-mdpi")
 
 ig = NumberImageGenerator.new;
-for i in 0..100
+
+for i in 0..99
   ig.generate(i.to_s);
 end
+
+ig.set_hdpi_100()
+ig.generate("100")
 
 ig.set_xhdpi()
 for i in 0..99
