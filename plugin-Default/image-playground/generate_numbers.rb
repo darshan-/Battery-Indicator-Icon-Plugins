@@ -23,7 +23,7 @@ class NumberImageGenerator
 
   def set_hdpi()
     @image_dir = 'numbers-hdpi/'
-    @font_size = 30
+    @font_size = 28
     @dimen = 35
   end
 
@@ -33,17 +33,17 @@ class NumberImageGenerator
     @dimen = 35
   end
 
-  def set_mdpi()
-    @image_dir = 'numbers-mdpi/'
-    @font_size = 20
-    @dimen = 25
-  end
+#  def set_mdpi()
+#    @image_dir = 'numbers-mdpi/'
+#    @font_size = 15
+#    @dimen = 25
+#  end
 
-  def set_mdpi_100()
-    @image_dir = 'numbers-mdpi/'
-    @font_size = 14
-    @dimen = 25
-  end
+#  def set_mdpi_100()
+#    @image_dir = 'numbers-mdpi/'
+#    @font_size = 14
+#    @dimen = 25
+#  end
 
   def generate(text)
     filename = "" + sprintf("%03d", text) + ".png";
@@ -85,7 +85,7 @@ ig.generate("100")
 #system("for i in numbers-hdpi/[0-9]*.png; do convert $i -roll +1+0 $i; done")
 system("for i in numbers-hdpi/[0-9]*.png; do convert $i -roll +0+2 $i; done")
 #system("for i in numbers-hdpi/[0-9]*.png; do composite $i plug001.png $i; done")
-system("cp numbers-hdpi/[0-9]*.png numbers-mdpi");
-system("for i in numbers-mdpi/[0-9]*.png; do mogrify -resize 25x25 -sharpen 25x25 $i; done")
+#system("cp numbers-hdpi/[0-9]*.png numbers-mdpi");
+#system("for i in numbers-mdpi/[0-9]*.png; do mogrify -resize 25x25 -sharpen 25x25 $i; done")
 
 system("for i in numbers-xhdpi/[0-9]*.png; do convert $i -roll +0+3 $i; done")
